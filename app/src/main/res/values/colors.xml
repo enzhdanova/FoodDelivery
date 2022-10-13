@@ -10,4 +10,5 @@
     <color name="main_menu_gray">#F0F0F0</color>
     <color name="menu_inactive">#263238</color>
     <color name="menu_active">#FD3A69</color>
+    <color name="title">#222831</color>
 </resources>
