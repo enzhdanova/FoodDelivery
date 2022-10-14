@@ -7,8 +7,8 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
 import com.example.fooddelivery.databinding.FragmentFoodMenuBinding
+import com.example.fooddelivery.ui.FoodMenuAdapter
 import com.example.fooddelivery.ui.viewmodel.FoodMenuViewModel
-import com.google.android.material.tabs.TabLayout.Tab
 
 class FoodMenuFragment : Fragment() {
 
@@ -18,7 +18,10 @@ class FoodMenuFragment : Fragment() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
+
         viewModel.uiState.observe(this) {
+            uiState ->
+
 
         }
     }
@@ -43,6 +46,13 @@ class FoodMenuFragment : Fragment() {
     }
 
     private fun initView() {
+        val adapter = FoodMenuAdapter()
+
+
+        binding?.recyclerFoodMenu?.adapter = adapter
+        adapter.notifyDataSetChanged()
+
+
         viewModel.uiState.value?.category?.forEach { category ->
             binding?.category?.apply {
                 val newTab = this.newTab().setText(category)

@@ -1,4 +1,4 @@
-package com.example.fooddelivery.ui.viewmodel.model
+package com.example.fooddelivery.data.model
 
 import com.example.fooddelivery.utils.FoodCategory
 

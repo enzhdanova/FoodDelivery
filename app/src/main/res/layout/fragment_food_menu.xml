@@ -67,8 +67,11 @@
         app:tabTextColor="@color/tab_text_color" />
 
     <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recycler_food_menu"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:orientation="vertical"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
         app:layout_constrainedHeight="true"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintTop_toBottomOf="@id/category" />

@@ -8,48 +8,57 @@
         android:id="@+id/image_food"
         android:layout_width="135dp"
         android:layout_height="135dp"
-        android:layout_marginStart="16dp"
         android:layout_marginVertical="16dp"
+        android:layout_marginStart="16dp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"/>
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/title_food_name"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="22dp"
         android:layout_marginTop="16dp"
-        android:textSize="16sp"
-        android:textColor="@color/title"
-        android:textStyle="bold"
+        android:layout_marginEnd="16dp"
+        android:inputType="textMultiLine"
         android:text="asdgfbdgf"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintStart_toEndOf="@id/image_food"/>
+        android:textColor="@color/title"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        app:layout_constrainedWidth="true"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/image_food"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/title_about"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textColor="@color/subtitle"
         android:layout_marginStart="22dp"
         android:layout_marginTop="8dp"
+        android:layout_marginEnd="16dp"
+        android:inputType="textMultiLine"
         android:text="arybtfngykuli"
+        android:textColor="@color/subtitle"
         android:textSize="14sp"
-        app:layout_constraintTop_toBottomOf="@id/title_food_name"
-        app:layout_constraintStart_toEndOf="@id/image_food"/>
-    
+        app:layout_constrainedWidth="true"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/image_food"
+        app:layout_constraintTop_toBottomOf="@id/title_food_name" />
+
     <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/food_coast"
         android:layout_width="wrap_content"
         android:layout_height="32dp"
-        android:background="@drawable/button_rounded"
-        android:layout_marginBottom="16dp"
-        android:layout_marginEnd="16dp"
         android:layout_marginTop="8dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="16dp"
+        android:background="@drawable/button_rounded"
         android:text="argdth"
+        android:textAllCaps="false"
         android:textColor="@color/button_border"
         android:textSize="16sp"
-        android:textAllCaps="false"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"/>
+        app:layout_constraintEnd_toEndOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

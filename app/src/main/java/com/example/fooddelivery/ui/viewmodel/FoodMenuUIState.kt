@@ -1,7 +1,6 @@
 package com.example.fooddelivery.ui.viewmodel
 
-import com.example.fooddelivery.ui.viewmodel.model.Food
-import com.example.fooddelivery.utils.FoodCategory
+import com.example.fooddelivery.data.model.Food
 
 data class FoodMenuUIState(
     val category: List<String>? = null,
