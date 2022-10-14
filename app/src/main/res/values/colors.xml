@@ -11,4 +11,8 @@
     <color name="menu_inactive">#263238</color>
     <color name="menu_active">#FD3A69</color>
     <color name="title">#222831</color>
+    <color name="tab_selected">#33FD3A69</color>
+    <color name="tab_text_color">#C3C4C9</color>
+    <color name="tab_text_color_select">#FD3A69</color>
+    <color name="transparent">#00000000</color>
 </resources>
