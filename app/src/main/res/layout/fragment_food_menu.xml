@@ -79,5 +79,4 @@
         app:layout_constrainedHeight="true"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintTop_toBottomOf="@id/category" />
-
 </androidx.constraintlayout.widget.ConstraintLayout>

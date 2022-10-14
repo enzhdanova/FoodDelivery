@@ -15,4 +15,6 @@
     <color name="tab_text_color">#C3C4C9</color>
     <color name="tab_text_color_select">#FD3A69</color>
     <color name="transparent">#00000000</color>
+    <color name="subtitle">#AAAAAD</color>
+    <color name="button_border">#FD3A69</color>
 </resources>
