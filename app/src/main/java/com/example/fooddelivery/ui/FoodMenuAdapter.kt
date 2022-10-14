@@ -10,15 +10,15 @@ import com.example.fooddelivery.R
 import com.example.fooddelivery.data.model.Food
 import com.example.fooddelivery.databinding.ItemFoodBinding
 
-class FoodMenuAdapter : ListAdapter<Food, RecyclerView.ViewHolder>(DIFF) {
-
-    var foodsList = mutableListOf<Food>()
+class FoodMenuAdapter : ListAdapter<Food, FoodMenuAdapter.ViewHolder>(DIFF) {
 
     private companion object {
         val DIFF = object : DiffUtil.ItemCallback<Food>() {
 
-            override fun areItemsTheSame(oldItem: Food, newItem: Food) = oldItem.id == newItem.id
-            override fun areContentsTheSame(oldItem: Food, newItem: Food) = oldItem == newItem
+            override fun areItemsTheSame(oldItem: Food, newItem: Food): Boolean =
+                oldItem.id == newItem.id
+            override fun areContentsTheSame(oldItem: Food, newItem: Food): Boolean =
+                oldItem == newItem
 
         }
     }
@@ -26,7 +26,7 @@ class FoodMenuAdapter : ListAdapter<Food, RecyclerView.ViewHolder>(DIFF) {
     inner class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         private var binding: ItemFoodBinding = ItemFoodBinding.bind(view)
 
-        fun bind(food: Food) {
+        fun setData(food: Food) = with(binding) {
             binding.titleFoodName.text = food.name
             binding.titleAbout.text = food.description
             val coast = "${food.cost}${itemView.context.getString(R.string.rub)}"
@@ -40,16 +40,9 @@ class FoodMenuAdapter : ListAdapter<Food, RecyclerView.ViewHolder>(DIFF) {
         return ViewHolder(view)
     }
 
-    override fun getItemCount() = foodsList.size
-
-    fun setContent(foods: List<Food>) {
-        foodsList.clear()
-        foodsList.addAll(foods)
+    override fun onBindViewHolder(holder: ViewHolder, position: Int) {
+        holder.setData(getItem(position))
     }
 
-    override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
-        when (holder) {
-            is ViewHolder -> holder.bind(foodsList[position])
-        }
-    }
+
 }

@@ -1,5 +1,6 @@
-package com.example.fooddelivery.data.model
+package com.example.fooddelivery.data
 
+import com.example.fooddelivery.data.model.Food
 import com.example.fooddelivery.utils.FoodCategory
 
 object MockeFood {
@@ -7,27 +8,27 @@ object MockeFood {
         Food(id = 0, "Пицца с помидорами",
         "Очень вкусная пицца с помидорами",
         category = FoodCategory.PIZZA, image = "", cost = 300),
-        Food(id = 0, "Пицца с сыром",
+        Food(id = 1, "Пицца с сыром",
             "Очень вкусная пицца с помидорами и сыром",
             category = FoodCategory.PIZZA, image = "", cost = 310),
-        Food(id = 0, "Пиперони",
+        Food(id = 2, "Пиперони",
             "Острая колбаса, оливки",
             category = FoodCategory.PIZZA, image = "", cost = 200),
-        Food(id = 0, "4 сыра",
+        Food(id = 3, "4 сыра",
             "Несколько видов сыра",
             category = FoodCategory.PIZZA, image = "", cost = 150),
-        Food(id = 0, "Пицца с ананасами",
+        Food(id = 4, "Пицца с ананасами",
             "В составе пиццы ананасы",
             category = FoodCategory.PIZZA, image = "", cost = 400),
 
-        Food(id = 0, "Соус соевый",
+        Food(id = 5, "Соус соевый",
             "Самый обычный соевый соус",
-            category = FoodCategory.PIZZA, image = "", cost = 300),
-        Food(id = 0, "Соус песто",
+            category = FoodCategory.SAUCES, image = "", cost = 300),
+        Food(id = 6, "Соус песто",
             "зелень песто",
-            category = FoodCategory.PIZZA, image = "", cost = 300),
-        Food(id = 0, "Острый сыр",
+            category = FoodCategory.SAUCES, image = "", cost = 300),
+        Food(id = 7, "Острый сыр",
             "Сыр, чеснок, майонез",
-            category = FoodCategory.PIZZA, image = "", cost = 300)
+            category = FoodCategory.SAUCES, image = "", cost = 300)
     )
 }

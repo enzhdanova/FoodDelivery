@@ -3,7 +3,7 @@ package com.example.fooddelivery.ui.viewmodel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.example.fooddelivery.data.model.MockeFood
+import com.example.fooddelivery.data.MockeFood
 import com.example.fooddelivery.utils.FoodCategory
 
 class FoodMenuViewModel : ViewModel() {
@@ -13,7 +13,7 @@ class FoodMenuViewModel : ViewModel() {
 
     init {
         getCategory()
-        getFoodMenu()
+        getFoodMenu(FoodCategory.PIZZA)
     }
 
     private fun getCategory() {
@@ -25,9 +25,14 @@ class FoodMenuViewModel : ViewModel() {
         _uiState.value = _uiState.value?.copy(category = foodCategory)
     }
 
-    private fun getFoodMenu() {
+    fun getFoodMenu(category: FoodCategory) {
         val foods = MockeFood.foods
 
-        _uiState.value = _uiState?.value?.copy(foods = foods)
+        //TODO: ЭТО ДОЛЖНО БЫТЬ В USECASE
+        val foodWithCategory = foods.filter {
+            it.category == category
+        }
+
+        _uiState.value = _uiState.value?.copy(foods = foodWithCategory)
     }
 }

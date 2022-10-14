@@ -9,6 +9,9 @@ import androidx.fragment.app.viewModels
 import com.example.fooddelivery.databinding.FragmentFoodMenuBinding
 import com.example.fooddelivery.ui.FoodMenuAdapter
 import com.example.fooddelivery.ui.viewmodel.FoodMenuViewModel
+import com.example.fooddelivery.utils.FoodCategory
+import com.google.android.material.tabs.TabLayout
+import com.google.android.material.tabs.TabLayout.OnTabSelectedListener
 
 class FoodMenuFragment : Fragment() {
 
@@ -19,11 +22,10 @@ class FoodMenuFragment : Fragment() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-
         viewModel.uiState.observe(this) {
             uiState ->
-            uiState.foods?.let {
-                adapter.setContent(it)
+            uiState.foods?.apply {
+                adapter.submitList(this)
             }
         }
     }
@@ -57,5 +59,22 @@ class FoodMenuFragment : Fragment() {
                 addTab(newTab)
             }
         }
+
+        binding?.category?.addOnTabSelectedListener(tabListener)
     }
+
+    val tabListener = object : OnTabSelectedListener {
+        override fun onTabSelected(tab: TabLayout.Tab?) {
+            val position = tab?.position?:0
+            val category = FoodCategory.values()[position]
+
+            viewModel.getFoodMenu(category)
+        }
+
+        override fun onTabUnselected(tab: TabLayout.Tab?) = Unit
+
+        override fun onTabReselected(tab: TabLayout.Tab?) = Unit
+
+    }
+
 }
