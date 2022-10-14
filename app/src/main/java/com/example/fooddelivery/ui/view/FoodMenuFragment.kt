@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
 import com.example.fooddelivery.databinding.FragmentFoodMenuBinding
+import com.example.fooddelivery.ui.BannerAdapter
 import com.example.fooddelivery.ui.FoodMenuAdapter
 import com.example.fooddelivery.ui.viewmodel.FoodMenuViewModel
 import com.example.fooddelivery.utils.FoodCategory
@@ -17,7 +18,8 @@ class FoodMenuFragment : Fragment() {
 
     private val viewModel: FoodMenuViewModel by viewModels()
     private var binding : FragmentFoodMenuBinding? = null
-    private val adapter = FoodMenuAdapter()
+    private val foodMenuAdapter = FoodMenuAdapter()
+    private val bannerAdapter = BannerAdapter()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -25,7 +27,7 @@ class FoodMenuFragment : Fragment() {
         viewModel.uiState.observe(this) {
             uiState ->
             uiState.foods?.apply {
-                adapter.submitList(this)
+                foodMenuAdapter.submitList(this)
             }
         }
     }
@@ -51,7 +53,9 @@ class FoodMenuFragment : Fragment() {
 
     private fun initView() {
 
-        binding?.recyclerFoodMenu?.adapter = adapter
+        binding?.recyclerFoodMenu?.adapter = foodMenuAdapter
+        binding?.banner?.adapter = bannerAdapter
+        bannerAdapter.submitList(listOf(1, 2, 3))
 
         viewModel.uiState.value?.category?.forEach { category ->
             binding?.category?.apply {
@@ -63,7 +67,7 @@ class FoodMenuFragment : Fragment() {
         binding?.category?.addOnTabSelectedListener(tabListener)
     }
 
-    val tabListener = object : OnTabSelectedListener {
+    private val tabListener = object : OnTabSelectedListener {
         override fun onTabSelected(tab: TabLayout.Tab?) {
             val position = tab?.position?:0
             val category = FoodCategory.values()[position]
