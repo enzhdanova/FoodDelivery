@@ -1,5 +1,7 @@
 package com.example.fooddelivery.data
 
+import androidx.annotation.DrawableRes
+import com.example.fooddelivery.R
 import com.example.fooddelivery.data.model.Food
 import com.example.fooddelivery.utils.FoodCategory
 
@@ -30,5 +32,11 @@ object MockeFood {
         Food(id = 7, "Острый сыр",
             "Сыр, чеснок, майонез",
             category = FoodCategory.SAUCES, image = "", cost = 300)
+    )
+
+    @DrawableRes val banners = listOf<Int>(
+        R.drawable.ic_banner,
+        R.drawable.ic_banner,
+        R.drawable.ic_banner
     )
 }

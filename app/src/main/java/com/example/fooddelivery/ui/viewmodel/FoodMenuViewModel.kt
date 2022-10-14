@@ -3,36 +3,53 @@ package com.example.fooddelivery.ui.viewmodel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
 import com.example.fooddelivery.data.MockeFood
+import com.example.fooddelivery.domain.FoodMenuUseCase
 import com.example.fooddelivery.utils.FoodCategory
+import kotlinx.coroutines.launch
 
-class FoodMenuViewModel : ViewModel() {
+class FoodMenuViewModel() : ViewModel() {
+    private val foodMenuUseCase = FoodMenuUseCase()
 
     private val _uiState = MutableLiveData(FoodMenuUIState())
     val uiState: LiveData<FoodMenuUIState> = _uiState
 
+    private val _uiStateBanner = MutableLiveData<List<Int>>()
+    val uiStateBanner: LiveData<List<Int>> = _uiStateBanner
+
+
     init {
         getCategory()
-        getFoodMenu(FoodCategory.PIZZA)
+        getFoodMenu(FoodCategory.PIZZA.food)
+        getBanners()
     }
 
     private fun getCategory() {
-
-        val foodCategory = FoodCategory.values().map {
-            foodCategory -> foodCategory.food
-        }.toList()
-
-        _uiState.value = _uiState.value?.copy(category = foodCategory)
+        viewModelScope.launch {
+            val resultFoodCategory = foodMenuUseCase.getCategory()
+            resultFoodCategory.onSuccess { category ->
+                _uiState.value = _uiState.value?.copy(category = category)
+            }
+        }
     }
 
-    fun getFoodMenu(category: FoodCategory) {
-        val foods = MockeFood.foods
-
-        //TODO: ЭТО ДОЛЖНО БЫТЬ В USECASE
-        val foodWithCategory = foods.filter {
-            it.category == category
+    fun getFoodMenu(category: String) {
+        viewModelScope.launch {
+            val resultFoods = foodMenuUseCase.getFoodMenu(category)
+            resultFoods.onSuccess {
+                foodWithCategory ->
+                _uiState.value = _uiState.value?.copy(foods = foodWithCategory)
+            }
         }
+    }
 
-        _uiState.value = _uiState.value?.copy(foods = foodWithCategory)
+    private fun getBanners() {
+        viewModelScope.launch {
+            val resultBanners = foodMenuUseCase.getBanners()
+            resultBanners.onSuccess {
+                _uiStateBanner.value = it
+            }
+        }
     }
 }

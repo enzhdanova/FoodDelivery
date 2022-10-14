@@ -10,7 +10,6 @@ import com.example.fooddelivery.databinding.FragmentFoodMenuBinding
 import com.example.fooddelivery.ui.BannerAdapter
 import com.example.fooddelivery.ui.FoodMenuAdapter
 import com.example.fooddelivery.ui.viewmodel.FoodMenuViewModel
-import com.example.fooddelivery.utils.FoodCategory
 import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayout.OnTabSelectedListener
 
@@ -52,10 +51,9 @@ class FoodMenuFragment : Fragment() {
     }
 
     private fun initView() {
-
         binding?.recyclerFoodMenu?.adapter = foodMenuAdapter
         binding?.banner?.adapter = bannerAdapter
-        bannerAdapter.submitList(listOf(1, 2, 3))
+        bannerAdapter.submitList(viewModel.uiStateBanner.value)
 
         viewModel.uiState.value?.category?.forEach { category ->
             binding?.category?.apply {
@@ -69,8 +67,7 @@ class FoodMenuFragment : Fragment() {
 
     private val tabListener = object : OnTabSelectedListener {
         override fun onTabSelected(tab: TabLayout.Tab?) {
-            val position = tab?.position?:0
-            val category = FoodCategory.values()[position]
+            val category =  tab?.text.toString()
 
             viewModel.getFoodMenu(category)
         }

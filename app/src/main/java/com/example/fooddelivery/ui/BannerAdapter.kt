@@ -13,7 +13,7 @@ import com.example.fooddelivery.databinding.ItemBannerBinding
 import com.example.fooddelivery.databinding.ItemFoodBinding
 
 class BannerAdapter : ListAdapter<Int, BannerAdapter.ViewHolder>(DIFF) {
-
+    //TODO: Сделать idemDecoration..
     private companion object {
         val DIFF = object : DiffUtil.ItemCallback<Int>() {
 
@@ -28,7 +28,7 @@ class BannerAdapter : ListAdapter<Int, BannerAdapter.ViewHolder>(DIFF) {
         private var binding: ItemBannerBinding = ItemBannerBinding.bind(view)
 
         fun setData(id: Int) = with(binding) {
-            val banner = AppCompatResources.getDrawable(itemView.context, R.drawable.ic_banner)
+            val banner = AppCompatResources.getDrawable(itemView.context, id)
             binding.banner.setImageDrawable(banner)
         }
 
