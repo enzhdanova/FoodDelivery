@@ -14,6 +14,7 @@ class FoodMenuFragment : Fragment() {
 
     private val viewModel: FoodMenuViewModel by viewModels()
     private var binding : FragmentFoodMenuBinding? = null
+    private val adapter = FoodMenuAdapter()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -21,8 +22,9 @@ class FoodMenuFragment : Fragment() {
 
         viewModel.uiState.observe(this) {
             uiState ->
-
-
+            uiState.foods?.let {
+                adapter.setContent(it)
+            }
         }
     }
 
@@ -46,12 +48,8 @@ class FoodMenuFragment : Fragment() {
     }
 
     private fun initView() {
-        val adapter = FoodMenuAdapter()
-
 
         binding?.recyclerFoodMenu?.adapter = adapter
-        adapter.notifyDataSetChanged()
-
 
         viewModel.uiState.value?.category?.forEach { category ->
             binding?.category?.apply {

@@ -1,18 +1,27 @@
 package com.example.fooddelivery.ui
 
-import android.content.res.Resources
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.recyclerview.widget.DiffUtil
+import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.example.fooddelivery.R
 import com.example.fooddelivery.data.model.Food
-import com.example.fooddelivery.data.model.MockeFood
 import com.example.fooddelivery.databinding.ItemFoodBinding
 
-class FoodMenuAdapter : RecyclerView.Adapter<FoodMenuAdapter.ViewHolder>() {
+class FoodMenuAdapter : ListAdapter<Food, RecyclerView.ViewHolder>(DIFF) {
 
-    val foods = MockeFood.foods
+    var foodsList = mutableListOf<Food>()
+
+    private companion object {
+        val DIFF = object : DiffUtil.ItemCallback<Food>() {
+
+            override fun areItemsTheSame(oldItem: Food, newItem: Food) = oldItem.id == newItem.id
+            override fun areContentsTheSame(oldItem: Food, newItem: Food) = oldItem == newItem
+
+        }
+    }
 
     inner class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         private var binding: ItemFoodBinding = ItemFoodBinding.bind(view)
@@ -20,7 +29,8 @@ class FoodMenuAdapter : RecyclerView.Adapter<FoodMenuAdapter.ViewHolder>() {
         fun bind(food: Food) {
             binding.titleFoodName.text = food.name
             binding.titleAbout.text = food.description
-            binding.foodCoast.text = "${food.cost}${itemView.context.getString(R.string.rub)}"
+            val coast = "${food.cost}${itemView.context.getString(R.string.rub)}"
+            binding.foodCoast.text = coast
         }
 
     }
@@ -30,9 +40,16 @@ class FoodMenuAdapter : RecyclerView.Adapter<FoodMenuAdapter.ViewHolder>() {
         return ViewHolder(view)
     }
 
-    override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        holder.bind(foods[position])
+    override fun getItemCount() = foodsList.size
+
+    fun setContent(foods: List<Food>) {
+        foodsList.clear()
+        foodsList.addAll(foods)
     }
 
-    override fun getItemCount() = foods.size
+    override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
+        when (holder) {
+            is ViewHolder -> holder.bind(foodsList[position])
+        }
+    }
 }
