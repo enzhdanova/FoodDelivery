@@ -8,7 +8,9 @@ import android.view.ViewGroup
 import androidx.fragment.app.viewModels
 import com.example.fooddelivery.databinding.FragmentFoodMenuBinding
 import com.example.fooddelivery.ui.BannerAdapter
+import com.example.fooddelivery.ui.BannersItemDecoration
 import com.example.fooddelivery.ui.FoodMenuAdapter
+import com.example.fooddelivery.ui.FoodsMenuDecoration
 import com.example.fooddelivery.ui.viewmodel.FoodMenuViewModel
 import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayout.OnTabSelectedListener
@@ -16,15 +18,14 @@ import com.google.android.material.tabs.TabLayout.OnTabSelectedListener
 class FoodMenuFragment : Fragment() {
 
     private val viewModel: FoodMenuViewModel by viewModels()
-    private var binding : FragmentFoodMenuBinding? = null
+    private var binding: FragmentFoodMenuBinding? = null
     private val foodMenuAdapter = FoodMenuAdapter()
     private val bannerAdapter = BannerAdapter()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        viewModel.uiState.observe(this) {
-            uiState ->
+        viewModel.uiState.observe(this) { uiState ->
             uiState.foods?.apply {
                 foodMenuAdapter.submitList(this)
             }
@@ -51,8 +52,16 @@ class FoodMenuFragment : Fragment() {
     }
 
     private fun initView() {
-        binding?.recyclerFoodMenu?.adapter = foodMenuAdapter
-        binding?.banner?.adapter = bannerAdapter
+        binding?.recyclerFoodMenu?.apply {
+            adapter = foodMenuAdapter
+            addItemDecoration(FoodsMenuDecoration(requireContext()))
+
+        }
+        binding?.banner?.apply {
+            adapter = bannerAdapter
+            addItemDecoration(BannersItemDecoration(requireContext()))
+        }
+
         bannerAdapter.submitList(viewModel.uiStateBanner.value)
 
         viewModel.uiState.value?.category?.forEach { category ->
@@ -67,7 +76,7 @@ class FoodMenuFragment : Fragment() {
 
     private val tabListener = object : OnTabSelectedListener {
         override fun onTabSelected(tab: TabLayout.Tab?) {
-            val category =  tab?.text.toString()
+            val category = tab?.text.toString()
 
             viewModel.getFoodMenu(category)
         }
@@ -75,7 +84,5 @@ class FoodMenuFragment : Fragment() {
         override fun onTabUnselected(tab: TabLayout.Tab?) = Unit
 
         override fun onTabReselected(tab: TabLayout.Tab?) = Unit
-
     }
-
 }
