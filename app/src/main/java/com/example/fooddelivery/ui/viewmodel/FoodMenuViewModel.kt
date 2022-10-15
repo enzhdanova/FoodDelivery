@@ -6,6 +6,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.fooddelivery.data.MockeFood
 import com.example.fooddelivery.domain.FoodMenuUseCase
+import com.example.fooddelivery.utils.BannerEnum
 import com.example.fooddelivery.utils.FoodCategory
 import kotlinx.coroutines.launch
 
@@ -45,11 +46,8 @@ class FoodMenuViewModel() : ViewModel() {
     }
 
     private fun getBanners() {
-        viewModelScope.launch {
-            val resultBanners = foodMenuUseCase.getBanners()
-            resultBanners.onSuccess {
-                _uiStateBanner.value = it
-            }
+        _uiStateBanner.value = BannerEnum.values().map {
+            bannerEnum -> bannerEnum.id
         }
     }
 }

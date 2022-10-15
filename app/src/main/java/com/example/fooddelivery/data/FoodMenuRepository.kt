@@ -4,9 +4,6 @@ import com.example.fooddelivery.data.model.Food
 import com.example.fooddelivery.utils.FoodCategory
 
 class FoodMenuRepository {
-    fun getBanners(): Result<List<Int>> {
-        return Result.success(MockeFood.banners)
-    }
 
     fun getFoodMenu(): Result<List<Food>> {
         val foods = MockeFood.foods

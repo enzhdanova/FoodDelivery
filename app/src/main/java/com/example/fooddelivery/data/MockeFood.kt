@@ -33,10 +33,4 @@ object MockeFood {
             "Сыр, чеснок, майонез",
             category = FoodCategory.SAUCES, image = "", cost = 300)
     )
-
-    @DrawableRes val banners = listOf<Int>(
-        R.drawable.ic_banner,
-        R.drawable.ic_banner,
-        R.drawable.ic_banner
-    )
 }

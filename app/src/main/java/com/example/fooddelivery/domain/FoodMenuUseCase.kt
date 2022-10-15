@@ -6,16 +6,6 @@ import com.example.fooddelivery.data.model.Food
 class FoodMenuUseCase {
     val foodMenuRepository = FoodMenuRepository()
 
-    fun getBanners(): Result<List<Int>> {
-        val bannersResult = foodMenuRepository.getBanners()
-        bannersResult.onSuccess {
-            return Result.success(it)
-        }.onFailure {
-            Result.failure<Throwable>(it)
-        }
-        return Result.failure(Throwable())
-    }
-
     fun getFoodMenu(category: String): Result<List<Food>> {
         val foodsResult = foodMenuRepository.getFoodMenu()
         foodsResult.onSuccess { foods ->
