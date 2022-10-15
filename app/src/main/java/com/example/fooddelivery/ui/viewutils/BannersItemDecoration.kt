@@ -8,7 +8,7 @@ import com.example.fooddelivery.R
 
 class BannersItemDecoration(context: Context) : RecyclerView.ItemDecoration() {
 
-    private val margin_horizintal = context.resources
+    private val margin_horizontal = context.resources
         .getDimensionPixelSize(R.dimen.margin_banner_horizontal)
     private val margin_vertical = context.resources
         .getDimensionPixelSize(R.dimen.margin_banner_vertical)
@@ -28,11 +28,11 @@ class BannersItemDecoration(context: Context) : RecyclerView.ItemDecoration() {
 
         val newRect = when (position) {
             0 ->
-                Rect(margin_start, margin_vertical, margin_horizintal, margin_vertical)
+                Rect(margin_start, margin_vertical, margin_horizontal, margin_vertical)
             state.itemCount - 1 ->
-                Rect(margin_horizintal, margin_vertical, margin_horizintal, margin_vertical)
+                Rect(margin_horizontal, margin_vertical, margin_horizontal, margin_vertical)
             else ->
-                Rect(margin_horizintal, margin_vertical, margin_start, margin_vertical)
+                Rect(margin_horizontal, margin_vertical, margin_start, margin_vertical)
         }
 
         outRect.apply {
