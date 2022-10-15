@@ -4,4 +4,6 @@
     <string name="profile">профиль</string>
     <string name="food_menu">меню</string>
     <string name="rub">р</string>
+    <string name="city">Москва</string>
+    <string name="qr_code">qr code</string>
 </resources>
