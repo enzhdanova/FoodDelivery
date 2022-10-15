@@ -6,6 +6,8 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
+import com.example.fooddelivery.BuildConfig
 import com.example.fooddelivery.R
 import com.example.fooddelivery.data.model.Food
 import com.example.fooddelivery.databinding.ItemFoodBinding
@@ -31,6 +33,13 @@ class FoodMenuAdapter : ListAdapter<Food, FoodMenuAdapter.ViewHolder>(DIFF) {
             binding.titleAbout.text = food.description
             val coast = "${food.cost}${itemView.context.getString(R.string.rub)}"
             binding.foodCoast.text = coast
+
+            //TODO: Картинки не грузятся точно из-за самоподписанного сертефиката.
+            val url = BuildConfig.BASE_URL + "image/" + food.image
+            Glide
+                .with(itemView)
+                .load(url)
+                .into(binding.imageFood)
         }
 
     }

@@ -11,7 +11,7 @@ import com.example.fooddelivery.R
 import com.example.fooddelivery.databinding.ItemBannerBinding
 
 class BannerAdapter : ListAdapter<Int, BannerAdapter.ViewHolder>(DIFF) {
-    //TODO: Сделать idemDecoration..
+
     private companion object {
         val DIFF = object : DiffUtil.ItemCallback<Int>() {
 

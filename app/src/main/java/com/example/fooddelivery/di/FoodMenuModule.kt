@@ -1,5 +1,6 @@
 package com.example.fooddelivery.di
 
+import com.example.fooddelivery.BuildConfig
 import com.example.fooddelivery.domain.FoodMenuUseCaseImpl
 import com.example.fooddelivery.network.FoodMenuApi
 import com.example.fooddelivery.ui.FoodMenuUseCase
@@ -28,13 +29,11 @@ abstract class FoodMenuModule {
 @InstallIn(SingletonComponent::class)
 class NetworkModule {
 
-    val url = "https://158.160.16.191:1221/docs/"
-
     @Provides
     @Singleton
     fun provideApi() = Retrofit.Builder()
         .addConverterFactory(GsonConverterFactory.create())
-        .baseUrl(url)
+        .baseUrl(BuildConfig.BASE_URL)
         .client(UnsafeOkHttpClient.getUnsafeOkHttpClient())
         .build()
 

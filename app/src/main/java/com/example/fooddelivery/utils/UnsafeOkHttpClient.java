@@ -11,6 +11,10 @@ import javax.net.ssl.X509TrustManager;
 
 import okhttp3.OkHttpClient;
 
+//TODO: ВНИМАНИЕ!!!!
+// Этот кусок кода взят из интернета, т.к. используется сервер с самоподписанным сертефикатом.
+// Это можно использовать ТОЛЬКО в УЧЕБНЫХ целях
+
 public class UnsafeOkHttpClient {
     public static OkHttpClient getUnsafeOkHttpClient() {
         try {

@@ -20,8 +20,12 @@ class FoodMenuRepositoryImpl @Inject constructor(
                 val foods: List<Food> = foodRequests.map {
                     it.toModel()
                 }
+                print("-------------------------------")
+                print(foodRequests)
                 Result.success(foods)
             } catch (ioe: Exception) {
+                print("-------------------------------")
+                print(ioe)
                 Result.failure(ioe)
             }
         }
