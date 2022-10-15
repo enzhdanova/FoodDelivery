@@ -4,14 +4,17 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.fooddelivery.data.MockeFood
-import com.example.fooddelivery.domain.FoodMenuUseCase
+import com.example.fooddelivery.ui.FoodMenuUseCase
 import com.example.fooddelivery.utils.BannerEnum
 import com.example.fooddelivery.utils.FoodCategory
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
-class FoodMenuViewModel() : ViewModel() {
-    private val foodMenuUseCase = FoodMenuUseCase()
+@HiltViewModel
+class FoodMenuViewModel @Inject constructor(
+    private val foodMenuUseCase: FoodMenuUseCase
+) : ViewModel() {
 
     private val _uiState = MutableLiveData(FoodMenuUIState())
     val uiState: LiveData<FoodMenuUIState> = _uiState
@@ -38,16 +41,15 @@ class FoodMenuViewModel() : ViewModel() {
     fun getFoodMenu(category: String) {
         viewModelScope.launch {
             val resultFoods = foodMenuUseCase.getFoodMenu(category)
-            resultFoods.onSuccess {
-                foodWithCategory ->
+            resultFoods.onSuccess { foodWithCategory ->
                 _uiState.value = _uiState.value?.copy(foods = foodWithCategory)
             }
         }
     }
 
     private fun getBanners() {
-        _uiStateBanner.value = BannerEnum.values().map {
-            bannerEnum -> bannerEnum.id
+        _uiStateBanner.value = BannerEnum.values().map { bannerEnum ->
+            bannerEnum.id
         }
     }
 }

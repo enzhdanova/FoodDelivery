@@ -7,5 +7,6 @@ enum class FoodCategory(val food: String) {
     DESSERTS("десерты"),
     BEVERAGES("напитки"),
     SAUCES("Соусы"),
-    OTHER_GOODS("Другие товары")
+    OTHER_GOODS("Другие товары"),
+    DRINKS("Напитки")
 }

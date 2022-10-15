@@ -6,7 +6,9 @@ import androidx.fragment.app.commit
 import com.example.fooddelivery.R
 import com.example.fooddelivery.databinding.ActivityMainBinding
 import com.google.android.material.navigation.NavigationBarView
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
 
     private var binding: ActivityMainBinding? = null

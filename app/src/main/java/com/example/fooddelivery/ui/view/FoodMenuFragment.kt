@@ -7,14 +7,16 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
 import com.example.fooddelivery.databinding.FragmentFoodMenuBinding
-import com.example.fooddelivery.ui.BannerAdapter
-import com.example.fooddelivery.ui.BannersItemDecoration
-import com.example.fooddelivery.ui.FoodMenuAdapter
-import com.example.fooddelivery.ui.FoodsMenuDecoration
+import com.example.fooddelivery.ui.viewutils.BannerAdapter
+import com.example.fooddelivery.ui.viewutils.BannersItemDecoration
+import com.example.fooddelivery.ui.viewutils.FoodMenuAdapter
+import com.example.fooddelivery.ui.viewutils.FoodsMenuDecoration
 import com.example.fooddelivery.ui.viewmodel.FoodMenuViewModel
 import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayout.OnTabSelectedListener
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class FoodMenuFragment : Fragment() {
 
     private val viewModel: FoodMenuViewModel by viewModels()

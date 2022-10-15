@@ -1,4 +1,4 @@
-package com.example.fooddelivery.ui
+package com.example.fooddelivery.ui.viewutils
 
 import android.content.Context
 import android.graphics.Rect

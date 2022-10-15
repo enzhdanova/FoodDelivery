@@ -1,4 +1,4 @@
-package com.example.fooddelivery.ui
+package com.example.fooddelivery.ui.viewutils
 
 import android.view.LayoutInflater
 import android.view.View
@@ -8,9 +8,7 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.example.fooddelivery.R
-import com.example.fooddelivery.data.model.Food
 import com.example.fooddelivery.databinding.ItemBannerBinding
-import com.example.fooddelivery.databinding.ItemFoodBinding
 
 class BannerAdapter : ListAdapter<Int, BannerAdapter.ViewHolder>(DIFF) {
     //TODO: Сделать idemDecoration..
